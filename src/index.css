@@ -132,3 +132,39 @@ h1, h2, h3, h4, h5, h6 {
 .border-beam:hover::before {
   opacity: 0.65;
 }
+
+/* Print Styles - Print only the ticket card */
+@media print {
+  /* Hide every single element in body by default */
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Make the printable ticket and its contents visible */
+  #printable-ticket,
+  #printable-ticket * {
+    visibility: visible !important;
+  }
+  
+  /* Position the ticket at the top center of the print page */
+  #printable-ticket {
+    position: absolute;
+    left: 50% !important;
+    top: 20px !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+    background-color: #ffffff !important;
+    /* Force browsers to print backgrounds and gradients */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Hide the action utilities panel from print layout */
+  .no-print {
+    display: none !important;
+  }
+}

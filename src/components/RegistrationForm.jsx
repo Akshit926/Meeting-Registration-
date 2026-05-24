@@ -523,7 +523,7 @@ const RegistrationForm = () => {
               className="flex flex-col items-center"
             >
               {/* Ticket Card Wrapper */}
-              <div className="relative rounded-3xl p-[1px] bg-gradient-to-b from-brand-gold to-slate-200 shadow-xl max-w-md w-full overflow-hidden mb-6 border border-slate-200/80">
+              <div id="printable-ticket" className="relative rounded-3xl p-[1px] bg-gradient-to-b from-brand-gold to-slate-200 shadow-xl max-w-md w-full overflow-hidden mb-6 border border-slate-200/80">
                 
                 {/* Visual Tickets cuts on left and right */}
                 <div className="absolute top-[48%] -left-4 w-8 h-8 rounded-full bg-slate-50 border-r border-slate-200 z-20"></div>
@@ -551,7 +551,7 @@ const RegistrationForm = () => {
                       400th Celebration Meeting
                     </span>
                     <div className="mt-2.5 px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-[9px] inline-block font-black text-slate-700 uppercase tracking-wider">
-                      🎟️ {formData.role === 'participant' ? 'Player nomination pass' : 'Audience admission pass'}
+                      🎟️ {formData.role === 'participant' ? 'Player Pass' : 'Audience Pass'}
                     </div>
                   </div>
 
@@ -609,16 +609,18 @@ const RegistrationForm = () => {
                     </div>
                     {/* Simulated barcode */}
                     <div className="flex flex-col items-end">
-                      <div className="flex space-x-[2px] h-6 bg-slate-800 p-0.5 rounded">
-                        <div className="w-1 bg-black h-full"></div>
-                        <div className="w-0.5 bg-black h-full"></div>
-                        <div className="w-1.5 bg-black h-full"></div>
-                        <div className="w-0.5 bg-black h-full"></div>
-                        <div className="w-1 bg-black h-full"></div>
-                        <div className="w-[1px] bg-black h-full"></div>
-                        <div className="w-2 bg-black h-full"></div>
-                        <div className="w-0.5 bg-black h-full"></div>
-                        <div className="w-1 bg-black h-full"></div>
+                      <div className="flex space-x-[2px] h-8 bg-white p-1 border border-slate-200 rounded-md">
+                        <div className="w-[2px] bg-slate-900 h-full"></div>
+                        <div className="w-[1px] bg-slate-900 h-full"></div>
+                        <div className="w-[3px] bg-slate-900 h-full"></div>
+                        <div className="w-[1px] bg-slate-900 h-full"></div>
+                        <div className="w-[2px] bg-slate-900 h-full"></div>
+                        <div className="w-[1px] bg-slate-900 h-full"></div>
+                        <div className="w-[4px] bg-slate-900 h-full"></div>
+                        <div className="w-[2px] bg-slate-900 h-full"></div>
+                        <div className="w-[1px] bg-slate-900 h-full"></div>
+                        <div className="w-[3px] bg-slate-900 h-full"></div>
+                        <div className="w-[2px] bg-slate-900 h-full"></div>
                       </div>
                       <span className="text-[7px] font-bold text-slate-400 mt-1 uppercase">CELEBRATING 400 MEETINGS</span>
                     </div>
@@ -628,7 +630,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Action utilities */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 no-print">
                 <button
                   type="button"
                   onClick={() => {
