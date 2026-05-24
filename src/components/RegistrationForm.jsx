@@ -6,7 +6,7 @@ import toastmastersLogo from '../assets/toastmasters_logo.png';
 
 // Paste your deployed Google Apps Script Web App URL here after deploying the script!
 // Example: "https://script.google.com/macros/s/AKfycb.../exec"
-const GOOGLE_SHEET_WEBHOOK_URL = "";
+const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbz_M_pFVqEEGZRUID8s2yKFO5ySRzpfvD0ipL64vlINlanDn4YFx2kzUR8rUQd4GHHaaw/exec";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
