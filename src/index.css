@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-burgundy: #772432;
+  --color-brand-navy: #004165;
+  --color-brand-gold: #D7A922;
+  --color-brand-gold-light: #F2DF74;
+  --color-brand-dark: #070c16;
+  --color-brand-darker: #04070d;
+  --color-brand-slate: #f8fafc;
+  --font-display: "Outfit", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+/* Base custom styles */
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-navy);
+}
+
+/* Glassmorphism helpers for Light Theme */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(215, 169, 34, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(215, 169, 34, 0.15), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px);
+}
+
+.glass-panel-burgundy-hover:hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(119, 36, 50, 0.04);
+  border-color: rgba(119, 36, 50, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(119, 36, 50, 0.12), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #b45309 0%, #D7A922 50%, #92400e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-burgundy {
+  background: linear-gradient(135deg, #772432 0%, #b41b31 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light Stadium Spotlight Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.15);
+  }
+}
+
+.stadium-light-burgundy {
+  background: radial-gradient(circle, rgba(119, 36, 50, 0.15) 0%, rgba(119, 36, 50, 0) 70%);
+  animation: pulseGlow 10s infinite ease-in-out;
+}
+
+.stadium-light-navy {
+  background: radial-gradient(circle, rgba(0, 65, 101, 0.2) 0%, rgba(0, 65, 101, 0) 70%);
+  animation: pulseGlow 12s infinite ease-in-out alternate;
+}
+
+.stadium-light-gold {
+  background: radial-gradient(circle, rgba(215, 169, 34, 0.15) 0%, rgba(215, 169, 34, 0) 65%);
+  animation: pulseGlow 8s infinite ease-in-out 2s;
+}
+
+/* IPL Scoreboard Card Grid Pattern */
+.cricket-grid {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom border beam effect */
+.border-beam {
+  position: relative;
+}
+.border-beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to right, #004165, #772432, #D7A922, #004165);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.25;
+  transition: opacity 0.3s;
+}
+.border-beam:hover::before {
+  opacity: 0.65;
+}
