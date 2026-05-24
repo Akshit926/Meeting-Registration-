@@ -135,36 +135,48 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Print Styles - Print only the ticket card */
 @media print {
-  /* Hide every single element in body by default */
-  body * {
-    visibility: hidden;
+  /* Hide the navbar, footer and all sections except registration */
+  nav, footer, main > *:not(#register) {
+    display: none !important;
   }
   
-  /* Make the printable ticket and its contents visible */
-  #printable-ticket,
-  #printable-ticket * {
-    visibility: visible !important;
-  }
-  
-  /* Position the ticket at the top center of the print page */
-  #printable-ticket {
-    position: absolute;
-    left: 50% !important;
-    top: 20px !important;
-    transform: translateX(-50%) !important;
-    width: 100% !important;
-    max-width: 440px !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    border: 1px solid #e2e8f0 !important;
+  /* Reset registration section wrapper for printing */
+  #register {
+    background: none !important;
     background-color: #ffffff !important;
-    /* Force browsers to print backgrounds and gradients */
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Hide background glow blobs inside register section */
+  #register > div.absolute {
+    display: none !important;
+  }
+  
+  /* Hide the registration section header */
+  #register .text-center.max-w-3xl {
+    display: none !important;
+  }
+  
+  /* Hide the action utility buttons */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Center and style the ticket card for printing */
+  #printable-ticket {
+    margin: 40px auto 0 auto !important;
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    background-color: #ffffff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
   
-  /* Hide the action utilities panel from print layout */
-  .no-print {
-    display: none !important;
+  /* Ensure colors and gradients print correctly inside the ticket */
+  #printable-ticket * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }

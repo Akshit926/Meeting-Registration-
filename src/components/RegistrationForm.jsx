@@ -573,32 +573,13 @@ const RegistrationForm = () => {
                       </div>
                     </div>
 
-                    {/* Role specific display block */}
-                    {formData.role === 'participant' ? (
-                      /* Player Stats for Participants */
-                      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3">
-                        <div className="flex justify-between items-center text-xs">
-                          <span className="text-slate-500 font-bold">Draft Experience:</span>
-                          <span className="font-black text-slate-800">{formData.experience}</span>
-                        </div>
-                        <div className="flex justify-between items-center text-xs border-t border-slate-100 pt-2">
-                          <span className="text-slate-500 font-bold">Contest Base Price:</span>
-                          <span className="font-black text-brand-burgundy">{getBasePrice()}</span>
-                        </div>
-                        <div className="text-center border-t border-slate-100 pt-2">
-                          <span className="text-[9px] text-slate-400 uppercase tracking-widest font-bold block mb-1">CAPTAIN PITCH</span>
-                          <p className="text-[11px] text-slate-600 italic leading-relaxed">"{formData.sellingPoint}"</p>
-                        </div>
-                      </div>
-                    ) : (
-                      /* Guest message for Audience */
-                      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center">
-                        <span className="text-[9px] text-slate-400 uppercase tracking-wider block mb-1">Match Access Ticket</span>
-                        <p className="text-xs font-bold text-slate-700 leading-relaxed">
-                          Confirming your audience seat for 4:45 PM IST on Saturday, June 6, 2026.
-                        </p>
-                      </div>
-                    )}
+                    {/* Seat Confirmation Box */}
+                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center">
+                      <span className="text-[9px] text-slate-400 uppercase tracking-wider block mb-1">Match Access Ticket</span>
+                      <p className="text-xs font-bold text-slate-700 leading-relaxed">
+                        Confirming your seat for 4:45 PM IST on Saturday, June 6, 2026.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Ticket barcode footer section */}
