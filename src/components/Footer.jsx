@@ -47,10 +47,8 @@ const Footer = () => {
           {/* Column 2: Navigation Links */}
           <div>
             <h4 className="text-xs uppercase font-bold tracking-widest text-brand-navy mb-4">Quick Links</h4>
-            <div className="grid grid-cols-2 gap-2 text-xs text-slate-500">
-              <a href="#about" className="hover:text-brand-navy transition-colors duration-200">About Event</a>
+            <div className="flex flex-col gap-2 text-xs text-slate-500">
               <a href="#details" className="hover:text-brand-navy transition-colors duration-200">Event Details</a>
-              <a href="#hall-of-fame" className="hover:text-brand-navy transition-colors duration-200">Hall of Fame</a>
               <a href="#register" className="hover:text-brand-navy transition-colors duration-200">Register / Nominate</a>
             </div>
           </div>

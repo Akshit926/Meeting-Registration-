@@ -144,12 +144,6 @@ const Hero = () => {
               <span>Nominate / Register Now</span>
               <Award className="w-4 h-4" />
             </a>
-            <a
-              href="#about"
-              className="w-full sm:w-auto px-8 py-4 border border-slate-200 hover:border-brand-navy text-slate-700 hover:text-brand-navy bg-white rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center"
-            >
-              Explore Rules
-            </a>
           </motion.div>
 
           {/* Countdown Scoreboard */}

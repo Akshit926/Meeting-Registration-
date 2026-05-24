@@ -19,9 +19,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About Event', href: '#about' },
     { name: 'Details', href: '#details' },
-    { name: 'Hall of Fame', href: '#hall-of-fame' },
   ];
 
   return (
