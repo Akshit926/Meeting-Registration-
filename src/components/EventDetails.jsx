@@ -40,25 +40,18 @@ const EventDetails = () => {
 
   const organizers = [
     {
-      name: 'TM Akash Deep',
-      role: 'Contest Chair & VP Education',
-      phone: '+91 98765 43210',
-      email: 'education@wakadtm.org',
-      initials: 'AD',
-    },
-    {
-      name: 'TM Rakesh Kumar',
-      role: 'VP Membership (Guest Coordinator)',
-      phone: '+91 99999 88888',
-      email: 'membership@wakadtm.org',
-      initials: 'RK',
-    },
-    {
-      name: 'TM Sneha Patil',
+      name: 'TM Akshit Agarwal',
       role: 'VP Public Relations',
-      phone: '+91 98888 77777',
+      phone: '+91 98262 11779',
       email: 'pr@wakadtm.org',
-      initials: 'SP',
+      initials: 'AA',
+    },
+    {
+      name: 'TM Punit Hadani',
+      role: 'Sergeant At Arms (Guest Coordinator)',
+      phone: '+91 90333 70701',
+      email: 'saa@wakadtm.org',
+      initials: 'PH',
     },
   ];
 
@@ -214,7 +207,7 @@ const EventDetails = () => {
 
             <div className="mt-8 pt-4 border-t border-slate-200 text-center text-xs text-slate-500 font-bold">
               Need assistance? Call Guest Coord at <br/>
-              <strong className="text-slate-800 font-black">+91 99999 88888</strong>
+              <strong className="text-slate-800 font-black">+91 90333 70701</strong>
             </div>
           </motion.div>
         </div>
