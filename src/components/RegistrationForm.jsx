@@ -78,7 +78,7 @@ const RegistrationForm = () => {
       return;
     }
     
-    const headers = ['Ticket ID', 'Name', 'Contact No', 'Email ID', 'Club Name', 'Area', 'Role', 'Experience (Years)', 'Wins / Accomplishments', 'Shortlist Pitch', 'Registration Date'];
+    const headers = ['Ticket ID', 'Name', 'WhatsApp No', 'Email ID', 'Club Name', 'Area', 'Role', 'Experience (Years)', 'Wins / Accomplishments', 'Shortlist Pitch', 'Registration Date'];
     const rows = registrations.map(r => [
       r.id,
       `"${r.name.replace(/"/g, '""')}"`,
@@ -108,7 +108,7 @@ const RegistrationForm = () => {
   const validateStep1 = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Full name is required';
-    if (!formData.contact.trim()) newErrors.contact = 'Contact number is required';
+    if (!formData.contact.trim()) newErrors.contact = 'WhatsApp number is required';
     else if (!/^\+?[0-9\s-]{10,14}$/.test(formData.contact)) newErrors.contact = 'Invalid phone number';
     if (!formData.email.trim()) newErrors.email = 'Email ID is required';
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email address';
@@ -300,7 +300,7 @@ const RegistrationForm = () => {
                     <div className="flex flex-col">
                       <label className="text-xs uppercase font-bold tracking-wider text-slate-700 mb-2 flex items-center space-x-1">
                         <Phone className="w-3.5 h-3.5 text-brand-navy" />
-                        <span>Contact No <span className="text-brand-burgundy">*</span></span>
+                        <span>WhatsApp No <span className="text-brand-burgundy">*</span></span>
                       </label>
                       <input
                         type="text"
@@ -444,7 +444,7 @@ const RegistrationForm = () => {
                         placeholder="E.g. 2.5 Years"
                         className={`bg-slate-50/50 border ${
                           errors.experience ? 'border-brand-burgundy' : 'border-slate-300 focus:border-brand-navy/60'
-                        } rounded-xl px-4 py-3 text-slate-200 outline-none transition-all duration-300 placeholder-slate-400 text-sm`}
+                        } rounded-xl px-4 py-3 text-slate-800 outline-none transition-all duration-300 placeholder-slate-400 text-sm`}
                       />
                       {errors.experience && <span className="text-[10px] text-brand-burgundy font-semibold mt-1">{errors.experience}</span>}
                     </div>
@@ -662,20 +662,7 @@ const RegistrationForm = () => {
           )}
         </AnimatePresence>
 
-        {/* Organizer Database Exporter Panel */}
-        <div className="mt-12 pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 relative z-10">
-          <div className="flex items-center space-x-1.5 mb-4 sm:mb-0">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
-            <span>Database Status: <strong className="text-slate-700">Browser local storage active ({registrations.length} registered)</strong></span>
-          </div>
-          <button
-            type="button"
-            onClick={handleExportCSV}
-            className="px-4 py-2 border border-slate-200 hover:border-brand-navy hover:text-brand-navy bg-white text-slate-600 font-bold uppercase tracking-wider rounded-lg transition-all duration-300 shadow-sm flex items-center space-x-2 cursor-pointer"
-          >
-            <span>📊 Export Registrations (CSV Sheet)</span>
-          </button>
-        </div>
+
 
       </div>
     </section>

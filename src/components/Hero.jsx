@@ -132,6 +132,26 @@ const Hero = () => {
             “Think Fast. Speak Smart. Lead Boldly.”
           </motion.p>
 
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+          >
+            <a
+              href="#register"
+              className="w-full sm:w-auto px-8 py-4 bg-brand-navy hover:bg-brand-burgundy text-white font-black text-sm uppercase tracking-widest rounded-full shadow-md hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer"
+            >
+              <span>Nominate / Register Now</span>
+              <Award className="w-4 h-4" />
+            </a>
+            <a
+              href="#about"
+              className="w-full sm:w-auto px-8 py-4 border border-slate-200 hover:border-brand-navy text-slate-700 hover:text-brand-navy bg-white rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center"
+            >
+              Explore Rules
+            </a>
+          </motion.div>
+
           {/* Countdown Scoreboard */}
           <motion.div
             variants={itemVariants}
@@ -170,26 +190,6 @@ const Hero = () => {
               <MapPin className="w-5 h-5 text-brand-gold flex-shrink-0" />
               <span>Mount Litera Zee School, Wakad</span>
             </div>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-          >
-            <a
-              href="#register"
-              className="w-full sm:w-auto px-8 py-4 bg-brand-navy hover:bg-brand-burgundy text-white font-black text-sm uppercase tracking-widest rounded-full shadow-md hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer"
-            >
-              <span>Nominate / Register Now</span>
-              <Award className="w-4 h-4" />
-            </a>
-            <a
-              href="#about"
-              className="w-full sm:w-auto px-8 py-4 border border-slate-200 hover:border-brand-navy text-slate-700 hover:text-brand-navy bg-white rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center"
-            >
-              Explore Rules
-            </a>
           </motion.div>
         </motion.div>
 
