@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Trophy, Award } from 'lucide-react';
+import { Mail, Phone, MapPin, Trophy, Award, Globe } from 'lucide-react';
+import toastmastersLogo from '../assets/toastmasters_logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -29,9 +30,9 @@ const Footer = () => {
           
           {/* Column 1: Branding & Intro */}
           <div className="space-y-4">
-            <a href="#" className="flex items-center space-x-2">
+            <a href="https://wakadtoastmasters.vercel.app/" className="flex items-center space-x-2" target="_blank" rel="noopener noreferrer">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/fr/b/bd/Toastmasters_2011.png" 
+                src={toastmastersLogo} 
                 alt="Toastmasters International Logo" 
                 className="h-8 w-8 object-contain"
               />
@@ -40,7 +41,7 @@ const Footer = () => {
               </span>
             </a>
             <p className="text-xs text-slate-500 leading-relaxed max-w-sm">
-              Wakad Toastmasters is a premier club under District 98, Toastmasters International, dedicated to helping individuals master public speaking and leadership skills in Pune, India.
+              Wakad Toastmasters is a premier club under District 125, Toastmasters International, dedicated to helping individuals master public speaking and leadership skills in Pune, India.
             </p>
           </div>
 
@@ -63,7 +64,13 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-3.5 h-3.5 text-brand-navy flex-shrink-0" />
-                <span>+91 90333 70701 (Guest Coordinator)</span>
+                <a href="tel:+919826211779" className="hover:text-brand-navy transition-colors duration-200">+91 98262 11779</a>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Globe className="w-3.5 h-3.5 text-brand-navy flex-shrink-0" />
+                <a href="https://wakadtoastmasters.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-navy transition-colors duration-200">
+                  wakadtoastmasters.vercel.app
+                </a>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-3.5 h-3.5 text-brand-navy flex-shrink-0" />
@@ -117,8 +124,8 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center pt-8 text-[10px] text-slate-400">
           <p>© {currentYear} Wakad Toastmasters Club. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 sm:mt-0 font-bold">
-            <span>District 98 • Division B • Area A3</span>
-            <span>Club ID: 05781294</span>
+            <span>District 125 • Division C • Area C2</span>
+            <span>Club ID: 7030730</span>
           </div>
         </div>
 

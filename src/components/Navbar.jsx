@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           {/* Logo / Branding */}
-          <a href="#" className="flex items-center space-x-3 group">
+          <a href="https://wakadtoastmasters.vercel.app/" className="flex items-center space-x-3 group">
             <img 
               src={toastmastersLogo} 
               alt="Toastmasters International Logo" 
