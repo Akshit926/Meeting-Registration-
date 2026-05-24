@@ -4,6 +4,10 @@ import confetti from 'canvas-confetti';
 import { User, Phone, Mail, Home, Shield, Award, Users, FileText, CheckCircle, ArrowRight, ArrowLeft, Trophy } from 'lucide-react';
 import toastmastersLogo from '../assets/toastmasters_logo.png';
 
+// Paste your deployed Google Apps Script Web App URL here after deploying the script!
+// Example: "https://script.google.com/macros/s/AKfycb.../exec"
+const GOOGLE_SHEET_WEBHOOK_URL = "";
+
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -31,7 +35,7 @@ const RegistrationForm = () => {
     }
   });
 
-  const saveRegistration = (tid) => {
+  const saveRegistration = async (tid) => {
     const newRecord = {
       id: tid,
       name: formData.name,
@@ -45,9 +49,27 @@ const RegistrationForm = () => {
       sellingPoint: formData.role === 'participant' ? formData.sellingPoint : '',
       timestamp: new Date().toLocaleString(),
     };
+    
+    // Save to local storage as backup
     const updated = [...registrations, newRecord];
     setRegistrations(updated);
     localStorage.setItem('wtm_ipl_registrations', JSON.stringify(updated));
+
+    // Submit to Google Sheet Webhook if configured
+    if (GOOGLE_SHEET_WEBHOOK_URL) {
+      try {
+        await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors', // standard way to post to Apps Script without CORS issues
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newRecord),
+        });
+      } catch (err) {
+        console.error("Google sheets submission failed:", err);
+      }
+    }
   };
 
   const handleExportCSV = () => {
