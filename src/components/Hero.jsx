@@ -182,7 +182,7 @@ const Hero = () => {
             </div>
             <div className="col-span-2 md:col-span-1 flex items-center space-x-2.5 bg-white border border-slate-200/80 rounded-xl px-4 py-3 shadow-sm">
               <MapPin className="w-5 h-5 text-brand-gold flex-shrink-0" />
-              <span>Mount Litera Zee School, Wakad</span>
+              <span>Club house, Edenn Tower Society, Wakad</span>
             </div>
           </motion.div>
         </motion.div>

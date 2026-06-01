@@ -20,13 +20,13 @@ const EventDetails = () => {
     },
     {
       title: 'Stadium Venue',
-      value: 'Mount Litera Zee School',
+      value: 'Club house, Edenn Tower Society, Wakad',
       sub: 'Wakad, Pune - 411057',
       icon: MapPin,
       borderColor: 'hover:border-yellow-500/40',
       action: {
         text: 'Get Directions',
-        url: 'https://maps.google.com/?q=Mount+Litera+Zee+School+Wakad+Pune',
+        url: 'https://maps.google.com/?q=Club+house+Edenn+Tower+Society+Wakad+Pune',
       }
     },
     {
@@ -134,7 +134,7 @@ const EventDetails = () => {
                 Official Stadium
               </span>
               <h3 className="text-xl sm:text-2xl font-black text-brand-navy uppercase mt-4 mb-2 tracking-tight">
-                Mount Litera Zee School, Wakad
+                Club house, Edenn Tower Society, Wakad
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 max-w-xl mb-6">
                 Located in the heart of Wakad, Pune, the school provides an excellent, state-of-the-art auditorium with professional sound, stadium lighting, and seating, making it the perfect pitch for our impromptu speeches.

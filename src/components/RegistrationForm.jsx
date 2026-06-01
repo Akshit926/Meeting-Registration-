@@ -112,8 +112,11 @@ const RegistrationForm = () => {
     else if (!/^\+?[0-9\s-]{10,14}$/.test(formData.contact)) newErrors.contact = 'Invalid phone number';
     if (!formData.email.trim()) newErrors.email = 'Email ID is required';
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email address';
-    if (!formData.club.trim()) newErrors.club = 'Club name is required';
-    if (!formData.area.trim()) newErrors.area = 'Area code (A1, B1 etc) is required';
+    // Club and Area are required for audience/participant but optional for guests
+    if (formData.role !== 'guest') {
+      if (!formData.club.trim()) newErrors.club = 'Club name is required';
+      if (!formData.area.trim()) newErrors.area = 'Area code (A1, B1 etc) is required';
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -159,7 +162,7 @@ const RegistrationForm = () => {
   };
 
   const generateTicketId = () => {
-    const prefix = formData.role === 'participant' ? 'PLYR' : 'AUD';
+    const prefix = formData.role === 'participant' ? 'PLYR' : formData.role === 'guest' ? 'GST' : 'AUD';
     const rand = Math.floor(1000 + Math.random() * 9000);
     return `${prefix}-${rand}`;
   };
@@ -167,8 +170,9 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
 
-    if (formData.role === 'audience') {
-      if (validateStep1()) {
+    // Participants submit after completing step 2; Audience and Guests submit from step 1
+    if (formData.role === 'participant') {
+      if (validateStep2()) {
         const tid = generateTicketId();
         setTicketId(tid);
         saveRegistration(tid);
@@ -176,7 +180,7 @@ const RegistrationForm = () => {
         triggerConfetti();
       }
     } else {
-      if (validateStep2()) {
+      if (validateStep1()) {
         const tid = generateTicketId();
         setTicketId(tid);
         saveRegistration(tid);
@@ -334,51 +338,55 @@ const RegistrationForm = () => {
                       {errors.email && <span className="text-[10px] text-brand-burgundy font-semibold mt-1">{errors.email}</span>}
                     </div>
 
-                    {/* Toastmasters Club Name */}
-                    <div className="flex flex-col">
-                      <label className="text-xs uppercase font-bold tracking-wider text-slate-700 mb-2 flex items-center space-x-1">
-                        <Home className="w-3.5 h-3.5 text-brand-navy" />
-                        <span>Toastmasters Club Name <span className="text-brand-burgundy">*</span></span>
-                      </label>
-                      <input
-                        type="text"
-                        name="club"
-                        value={formData.club}
-                        onChange={handleInputChange}
-                        placeholder="E.g. Wakad Toastmasters Club"
-                        className={`bg-slate-50/50 border ${
-                          errors.club ? 'border-brand-burgundy' : 'border-slate-300 focus:border-brand-navy/60'
-                        } rounded-xl px-4 py-3 text-slate-800 outline-none transition-all duration-300 placeholder-slate-400 text-sm`}
-                      />
-                      {errors.club && <span className="text-[10px] text-brand-burgundy font-semibold mt-1">{errors.club}</span>}
-                    </div>
+                    {/* Toastmasters Club Name (hidden for guests) */}
+                    {formData.role !== 'guest' && (
+                      <div className="flex flex-col">
+                        <label className="text-xs uppercase font-bold tracking-wider text-slate-700 mb-2 flex items-center space-x-1">
+                          <Home className="w-3.5 h-3.5 text-brand-navy" />
+                          <span>Toastmasters Club Name <span className="text-brand-burgundy">*</span></span>
+                        </label>
+                        <input
+                          type="text"
+                          name="club"
+                          value={formData.club}
+                          onChange={handleInputChange}
+                          placeholder="E.g. Wakad Toastmasters Club"
+                          className={`bg-slate-50/50 border ${
+                            errors.club ? 'border-brand-burgundy' : 'border-slate-300 focus:border-brand-navy/60'
+                          } rounded-xl px-4 py-3 text-slate-800 outline-none transition-all duration-300 placeholder-slate-400 text-sm`}
+                        />
+                        {errors.club && <span className="text-[10px] text-brand-burgundy font-semibold mt-1">{errors.club}</span>}
+                      </div>
+                    )}
 
-                    {/* Area Code */}
-                    <div className="flex flex-col">
-                      <label className="text-xs uppercase font-bold tracking-wider text-slate-700 mb-2 flex items-center space-x-1">
-                        <Shield className="w-3.5 h-3.5 text-brand-navy" />
-                        <span>Area (A1, B1 etc) <span className="text-brand-burgundy">*</span></span>
-                      </label>
-                      <input
-                        type="text"
-                        name="area"
-                        value={formData.area}
-                        onChange={handleInputChange}
-                        placeholder="E.g. A3"
-                        className={`bg-slate-50/50 border ${
-                          errors.area ? 'border-brand-burgundy' : 'border-slate-300 focus:border-brand-navy/60'
-                        } rounded-xl px-4 py-3 text-slate-800 outline-none transition-all duration-300 placeholder-slate-400 text-sm`}
-                      />
-                      {errors.area && <span className="text-[10px] text-brand-burgundy font-semibold mt-1">{errors.area}</span>}
-                    </div>
+                    {/* Area Code (hidden for guests) */}
+                    {formData.role !== 'guest' && (
+                      <div className="flex flex-col">
+                        <label className="text-xs uppercase font-bold tracking-wider text-slate-700 mb-2 flex items-center space-x-1">
+                          <Shield className="w-3.5 h-3.5 text-brand-navy" />
+                          <span>Area (A1, B1 etc) <span className="text-brand-burgundy">*</span></span>
+                        </label>
+                        <input
+                          type="text"
+                          name="area"
+                          value={formData.area}
+                          onChange={handleInputChange}
+                          placeholder="E.g. A3"
+                          className={`bg-slate-50/50 border ${
+                            errors.area ? 'border-brand-burgundy' : 'border-slate-300 focus:border-brand-navy/60'
+                          } rounded-xl px-4 py-3 text-slate-800 outline-none transition-all duration-300 placeholder-slate-400 text-sm`}
+                        />
+                        {errors.area && <span className="text-[10px] text-brand-burgundy font-semibold mt-1">{errors.area}</span>}
+                      </div>
+                    )}
 
                     {/* Role Selection */}
                     <div className="flex flex-col">
                       <label className="text-xs uppercase font-bold tracking-wider text-slate-700 mb-2 flex items-center space-x-1">
                         <Users className="w-3.5 h-3.5 text-brand-navy" />
-                        <span>Are you a Player or Audience? <span className="text-brand-burgundy">*</span></span>
+                        <span>Are you a Player, Audience, or Guest? <span className="text-brand-burgundy">*</span></span>
                       </label>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-3 gap-4">
                         <button
                           type="button"
                           onClick={() => setFormData((prev) => ({ ...prev, role: 'audience' }))}
@@ -401,21 +409,23 @@ const RegistrationForm = () => {
                         >
                           Player
                         </button>
+                        <button
+                          type="button"
+                          onClick={() => setFormData((prev) => ({ ...prev, role: 'guest' }))}
+                          className={`py-3 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                            formData.role === 'guest'
+                              ? 'bg-emerald-600 border-emerald-600 text-white shadow-md'
+                              : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
+                          }`}
+                        >
+                          Guest
+                        </button>
                       </div>
                     </div>
 
                     {/* Step 1 Control Buttons */}
                     <div className="md:col-span-2 pt-4 border-t border-slate-100 flex justify-end">
-                      {formData.role === 'audience' ? (
-                        <button
-                          type="button"
-                          onClick={handleSubmit}
-                          className="px-8 py-3.5 bg-brand-navy hover:bg-brand-burgundy text-white font-black text-sm uppercase tracking-widest rounded-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2"
-                        >
-                          <span>Submit Registration</span>
-                          <CheckCircle className="w-4.5 h-4.5" />
-                        </button>
-                      ) : (
+                      {formData.role === 'participant' ? (
                         <button
                           type="button"
                           onClick={handleNextStep}
@@ -423,6 +433,15 @@ const RegistrationForm = () => {
                         >
                           <span>Next: Nomination</span>
                           <ArrowRight className="w-4.5 h-4.5" />
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={handleSubmit}
+                          className="px-8 py-3.5 bg-brand-navy hover:bg-brand-burgundy text-white font-black text-sm uppercase tracking-widest rounded-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+                        >
+                          <span>Submit Registration</span>
+                          <CheckCircle className="w-4.5 h-4.5" />
                         </button>
                       )}
                     </div>
@@ -550,8 +569,8 @@ const RegistrationForm = () => {
                     <span className="text-[9px] text-brand-gold tracking-[0.2em] font-black uppercase mt-0.5 block">
                       400th Celebration Meeting
                     </span>
-                    <div className="mt-2.5 px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-[9px] inline-block font-black text-slate-700 uppercase tracking-wider">
-                      🎟️ {formData.role === 'participant' ? 'Player Pass' : 'Audience Pass'}
+                      <div className="mt-2.5 px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-[9px] inline-block font-black text-slate-700 uppercase tracking-wider">
+                      🎟️ {formData.role === 'participant' ? 'Player Pass' : formData.role === 'guest' ? 'Guest Pass' : 'Audience Pass'}
                     </div>
                   </div>
 

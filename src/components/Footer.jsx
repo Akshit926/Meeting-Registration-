@@ -60,7 +60,7 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-3.5 h-3.5 text-brand-navy flex-shrink-0" />
-                <span>Mount Litera Zee School, Wakad, Pune</span>
+                <span>Club house, Edenn Tower Society, Wakad, Pune</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-3.5 h-3.5 text-brand-navy flex-shrink-0" />
